@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">app_project</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home">Главная</string>
+    <string name="search">Поиск</string>
+    <string name="library">Закладки</string>
+    <string name="profile">Профиль</string>
 </resources>
