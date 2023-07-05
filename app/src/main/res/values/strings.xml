@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">app_project</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book_name">Book name</string>
+    <string name="author_name">Автор:</string>
+    <string name="year_of_create">Год создания:</string>
+    <string name="description">Описание:</string>
+    <string name="text">Глава 1......</string>
 
     <string name="home">Главная</string>
     <string name="search">Поиск</string>
