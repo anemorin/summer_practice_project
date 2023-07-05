@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ResyclerViewElementFragment">
+
+    <ImageView
+        android:id="@+id/iv_eye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:scaleX=".85"
+        android:scaleY=".85"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_remove_red_eye_24" />
+
+    <TextView
+        android:id="@+id/tv_part_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textColor="@color/black"
+        android:text="@string/part_name"
+        app:layout_constraintStart_toEndOf="@+id/iv_eye"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_part_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/part_date"
+        android:textColor="@color/gray"
+        android:textSize="10dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_eye"
+        app:layout_constraintTop_toBottomOf="@+id/tv_part_name" />
+
+    <ImageView
+        android:id="@+id/iv_author"
+        android:layout_width="18dp"
+        android:layout_height="13dp"
+        android:scaleX=".8"
+        android:scaleY=".8"
+
+        app:layout_constraintBottom_toBottomOf="@+id/tv_part_author"
+        app:layout_constraintEnd_toStartOf="@+id/tv_part_author"
+        app:layout_constraintTop_toBottomOf="@+id/tv_part_name"
+        app:srcCompat="@drawable/baseline_person_24" />
+
+    <TextView
+        android:id="@+id/tv_part_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part_author"
+        android:textColor="@color/gray"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_part_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_part_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
