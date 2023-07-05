@@ -7,5 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 class CollectionFragment : Fragment(R.layout.fragment_collection) {
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }

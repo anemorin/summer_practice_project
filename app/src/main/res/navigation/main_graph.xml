@@ -10,8 +10,8 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/libraryFragment"
-        android:name="com.summer_practice.app_project.LibraryFragment"
+        android:id="@+id/myLibraryFragment"
+        android:name="com.summer_practice.app_project.MyLibraryFragment"
         android:label="fragment_library"
         tools:layout="@layout/fragment_library" />
     <fragment
