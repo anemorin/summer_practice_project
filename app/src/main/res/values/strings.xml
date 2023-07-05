@@ -5,6 +5,9 @@
     <string name="year_of_create">Год создания:</string>
     <string name="description">Описание:</string>
     <string name="text">Глава 1......</string>
+    <string name="part_name">Tом 1 глава 666</string>
+    <string name="part_date">05.07.2023</string>
+    <string name="part_author">avekefir</string>
 
     <string name="home">Главная</string>
     <string name="search">Поиск</string>
