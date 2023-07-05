@@ -15,4 +15,7 @@
     <string name="search">Поиск</string>
     <string name="library">Закладки</string>
     <string name="profile">Профиль</string>
+    <string name="Name_of_collections">Name_of_collections</string>
+    <string name="bookmark_description">bookmark_description</string>
+    <string name="My_Library_label">My Library label\n</string>
 </resources>
