@@ -1,4 +1,4 @@
-package com.summerpractice.app_project
+package com.summer_practice.app_project
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

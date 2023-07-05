@@ -1,10 +1,12 @@
-package com.summerpractice.app_project
+package com.summer_practice.app_project
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
-class MainFragment : Fragment(R.layout.fragment_main) {
+class ComicsPageFragment : Fragment(R.layout.fragment_comics_page) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
