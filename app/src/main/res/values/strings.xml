@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">app_project</string>
     <string name="book_name">Book name</string>
-    <string name="author_name">Автор:</string>
-    <string name="year_of_create">Год создания:</string>
-    <string name="description">Описание:</string>
-    <string name="text">Глава 1......</string>
-    <string name="part_name">Tом 1 глава 666</string>
-    <string name="part_date">05.07.2023</string>
-    <string name="part_author">avekefir</string>
+    <string name="author_name_label">Автор:</string>
+    <string name="year_of_create_label">Дата публикации:</string>
+    <string name="description_label">Описание:</string>
+    <string name="description_example">...................................................................................................................................................................</string>
+    <string name="part_name">part_name</string>
+    <string name="part_date">part_date</string>
+    <string name="status">Статус:</string>
+    <string name="count_chapters">Количество глав:</string>
+    <string name="chapters_label">Главы:</string>
 
     <string name="home">Главная</string>
     <string name="search">Поиск</string>
