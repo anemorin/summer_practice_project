@@ -1,8 +1,8 @@
 package com.summer_practice.app_project.AppApi
 
-data class MangaItem(
+data class ChapterItem(
     val id : String,
     val type : String,
-    val attributes: AttributeItem,
+    val attributes: AtrributeChapterItem,
     val relationships : List<RelationshipsItem>
 )

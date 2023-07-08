@@ -1,5 +1,6 @@
 package com.summer_practice.app_project
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
@@ -16,5 +17,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bnv_menu).apply {
             setupWithNavController(controller)
         }
+
+        val sharedPreferences = getSharedPreferences("token", Context.MODE_PRIVATE)
     }
 }

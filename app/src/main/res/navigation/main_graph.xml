@@ -16,7 +16,16 @@
         tools:layout="@layout/fragment_library" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.summer_practice.app_project.MainFragment"
+        android:name="com.summer_practice.app_project.Main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_comicsPageFragment"
+            app:destination="@id/comicsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicsPageFragment"
+        android:name="com.summer_practice.app_project.ComicsPageFragment"
+        android:label="fragment_comics_page"
+        tools:layout="@layout/fragment_comics_page" />
 </navigation>
