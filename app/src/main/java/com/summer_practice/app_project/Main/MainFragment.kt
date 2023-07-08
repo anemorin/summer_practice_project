@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewbinding.ViewBinding
-import com.summer_practice.app_project.AppApi.ApiItem
+import com.summer_practice.app_project.AppApi.ApiMultiItem
 import com.summer_practice.app_project.AppApi.AppAPI
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.FragmentMainBinding
@@ -41,7 +40,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val service = retroFit.create(AppAPI::class.java)
         val mainRecuclerView = binding.rvMain
         mainRecuclerView.layoutManager = LinearLayoutManager(context)
-        val listCollections = mutableListOf<ApiItem>()
+        val listCollections = mutableListOf<ApiMultiItem>()
 
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {

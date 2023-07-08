@@ -1,28 +1,29 @@
 package com.summer_practice.app_project.Main
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.summer_practice.app_project.AppApi.ApiItem
+import com.summer_practice.app_project.AppApi.ApiMultiItem
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.CollectionItemBinding
 
 class MainAdapter(
-    private val listCollections : List<ApiItem>) :
+    private val listCollections : List<ApiMultiItem>) :
     RecyclerView.Adapter<MainAdapter.MainFragmentViewHolder>() {
 
     class MainFragmentViewHolder(private val view: View):
         RecyclerView.ViewHolder(view) {
         private val binding = CollectionItemBinding.bind(view)
-        fun onBind(item: ApiItem) {
+        fun onBind(item: ApiMultiItem) {
             binding.run {
                 val adapter = subMainAdapter(item) { item ->
                     findNavController(view.findFragment())
-                        .navigate(R.id.action_mainFragment_to_comicsPageFragment)}
+                        .navigate(R.id.action_mainFragment_to_comicsPageFragment,
+                            MakeBundle(item))}
                 binding.rvHorizontal.adapter = adapter
             }
         }
@@ -37,5 +38,13 @@ class MainAdapter(
 
     override fun onBindViewHolder(holder: MainFragmentViewHolder, position: Int) {
         holder.onBind(listCollections[position])
+    }
+
+    companion object {
+        private fun MakeBundle(id : String): Bundle {
+            var bundle = Bundle()
+            bundle.putString("ID", id)
+            return bundle
+        }
     }
 }

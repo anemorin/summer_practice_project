@@ -1,5 +1,6 @@
 package com.summer_practice.app_project.AppApi
 
 data class CoverAtributesItem(
-    val fileName: String
+    val name: String?,
+    val fileName: String?
 )

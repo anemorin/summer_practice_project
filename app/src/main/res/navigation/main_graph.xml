@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/comicsPageFragment"
-        android:name="com.summer_practice.app_project.ComicsPageFragment"
+        android:name="com.summer_practice.app_project.ComicsPage.ComicsPageFragment"
         android:label="fragment_comics_page"
         tools:layout="@layout/fragment_comics_page" />
 </navigation>

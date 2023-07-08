@@ -15,10 +15,10 @@ interface AppAPI {
     suspend fun logIn(@Body creds: LogInAtr) : String
 
     @GET("/manga/?title={title}")
-    suspend fun searchManga(@Path("title") title: String) : ApiItem
+    suspend fun searchManga(@Path("title") title: String) : ApiMultiItem
 
-    @GET("/manga/{id}")
-    suspend fun getMangaById(@Path("id") id : String) : ApiItem
+    @GET("/manga/{id}?&includes[]=author&includes[]=cover_art")
+    suspend fun getMangaById(@Path("id") id : String) : ApiSingleItem
 
 //    @POST("/manga/{id}/status")
 //    @Headers({
@@ -27,6 +27,6 @@ interface AppAPI {
 //    suspend fun addMangaToWishList(@Body status : StatusItem)
 
     @GET("/manga?includes[]=cover_art")
-    suspend fun getListLatestUpdate() : ApiItem
+    suspend fun getListLatestUpdate() : ApiMultiItem
 
 }
