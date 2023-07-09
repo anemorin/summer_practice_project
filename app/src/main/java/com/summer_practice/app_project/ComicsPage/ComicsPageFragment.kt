@@ -3,11 +3,13 @@ package com.summer_practice.app_project.ComicsPage
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.summer_practice.app_project.AppApi.AppAPI
+import com.summer_practice.app_project.Main.MainAdapter
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.FragmentComicsPageBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -49,6 +51,7 @@ class ComicsPageFragment : Fragment(R.layout.fragment_comics_page) {
                 binding.tvDescription.text = mangaItem.data.attributes.description.en
                 binding.tvStatus.text = mangaItem.data.attributes.status
                 binding.tvYear.text = mangaItem.data.attributes.year.toString()
+
                 var link = ""
                 for (i in mangaItem.data.relationships) {
                     if (i.type == "author")
@@ -66,6 +69,12 @@ class ComicsPageFragment : Fragment(R.layout.fragment_comics_page) {
                 binding.rvChaptersList.layoutManager = LinearLayoutManager(context)
                 binding.rvChaptersList.adapter = adapter
 
+                binding.run {
+                    ibBackArroy.setOnClickListener {
+                        val fm : FragmentManager = parentFragmentManager
+                        fm.popBackStack()
+                    }
+                }
             }
         }
     }

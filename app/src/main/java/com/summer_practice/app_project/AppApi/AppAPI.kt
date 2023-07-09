@@ -5,10 +5,13 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface AppAPI {
-    @GET("/manga/{id}/feed?translatedLanguage[]=en")
-    suspend fun getMangaChapters(@Path("id") id:String): ApiItemChapter
+    @GET("/manga/{id}/feed?translatedLanguage[]=en&order[createdAt]=asc")
+    suspend fun getMangaChapters(
+        @Path("id") id:String)
+    : ApiItemChapter
 
     @POST("/auth/login")
     @Headers("Content-Type: application/json")
