@@ -8,7 +8,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface AppAPI {
-    @GET("/manga/{id}/feed?translatedLanguage[]=en&order[createdAt]=asc")
+    @GET("/manga/{id}/feed?translatedLanguage[]=en&order[chapter]=asc")
     suspend fun getMangaChapters(
         @Path("id") id:String)
     : ApiItemChapter
@@ -31,5 +31,8 @@ interface AppAPI {
 
     @GET("/manga?includes[]=cover_art")
     suspend fun getListLatestUpdate() : ApiMultiItem
+
+    @GET("/at-home/server/{id}")
+    suspend fun getChapterImage(@Path("id") id : String) : ChapterImageItem
 
 }

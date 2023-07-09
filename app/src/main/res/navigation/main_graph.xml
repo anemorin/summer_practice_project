@@ -13,7 +13,7 @@
         android:id="@+id/myLibraryFragment"
         android:name="com.summer_practice.app_project.MyLibraryFragment"
         android:label="fragment_library"
-        tools:layout="@layout/fragment_library" >
+        tools:layout="@layout/fragment_my_library" >
         <action
             android:id="@+id/action_myLibraryFragment_to_comicsPageFragment"
             app:destination="@id/comicsPageFragment" />
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/readerFragment"
-        android:name="com.summer_practice.app_project.AppApi.ReaderFragment"
+        android:name="com.summer_practice.app_project.Reader.ReaderFragment"
         android:label="fragment_reader"
         tools:layout="@layout/fragment_reader" />
 </navigation>
