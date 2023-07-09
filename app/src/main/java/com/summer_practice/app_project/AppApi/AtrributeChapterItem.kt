@@ -4,4 +4,5 @@ data class AtrributeChapterItem(
     val volume : String?,
     val chapter : String?,
     val title : String?,
+    val translatedLanguage: String
 )
