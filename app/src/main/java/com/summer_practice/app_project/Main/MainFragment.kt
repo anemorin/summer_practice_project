@@ -38,15 +38,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             .build()
 
         val service = retroFit.create(AppAPI::class.java)
-        val mainRecuclerView = binding.rvMain
-        mainRecuclerView.layoutManager = LinearLayoutManager(context)
+        binding.rvMain.layoutManager = LinearLayoutManager(context)
         val listCollections = mutableListOf<ApiMultiItem>()
 
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 listCollections.add(service.getListLatestUpdate())
                 val adapter = MainAdapter(listCollections)
-                mainRecuclerView.adapter = adapter
+                binding.rvMain.adapter = adapter
             }
         }
     }

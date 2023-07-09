@@ -4,62 +4,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.summer_practice.app_project.AppApi.ApiItemChapter
-<<<<<<< HEAD
 import com.summer_practice.app_project.AppApi.ChapterItem
-import com.summer_practice.app_project.AppApi.MangaItem
 import com.summer_practice.app_project.R
-import com.summer_practice.app_project.databinding.ComicsItemBinding
-import com.summer_practice.app_project.databinding.FragmentResyclerviewElementBinding
-=======
-import com.summer_practice.app_project.AppApi.MangaItem
-import com.summer_practice.app_project.R
-import com.summer_practice.app_project.databinding.ComicsItemBinding
->>>>>>> origin/main
+import com.summer_practice.app_project.databinding.ChapterItemBinding
 
-class ChapterListAdapter(private val apiItem : ApiItemChapter,
+class ChapterListAdapter(apiItem : ApiItemChapter,
                          private val onItemClick : (String) -> Unit) :
     RecyclerView.Adapter<ChapterListAdapter.ChapterListViewHolder>() {
-<<<<<<< HEAD
-    private val chaptersItems = apiItem.data
-=======
-    private val mangaItems = apiItem.data
->>>>>>> origin/main
 
+    private val chaptersItems = apiItem.data
+    
     class ChapterListViewHolder(
         private val view: View,
         private val onItemClick : (String) -> Unit) :
         RecyclerView.ViewHolder(view) {
-<<<<<<< HEAD
-        private val binding = FragmentResyclerviewElementBinding.bind(view)
+        private val binding = ChapterItemBinding.bind(view)
         fun onBind(item: ChapterItem) {
             binding.run {
-                if (item.attributes.translatedLanguage == "en") {
-                    binding.tvVol.text = item.attributes.volume
-                    binding.tvChapterNumber.text = item.attributes.chapter
-                    binding.tvChapterLabel.text = R.string.chapters_label.toString()
-                    if (item.attributes.title != null)
-                        binding.tvPartName.text = item.attributes.title
-                    root.setOnClickListener {
-                        onItemClick(item.id)
-                    }
-=======
-        private val binding = ComicsItemBinding.bind(view)
-        fun onBind(item: MangaItem) {
-            binding.run {
-                var imageFile: String = ""
-                for (i in item.relationships) {
-                    if (i.type == "cover_art")
-                        imageFile = i.attributes?.fileName.toString()
-                }
-                val url = "https://uploads.mangadex.org/covers/${item.id}/$imageFile"
-                binding.tvHeader.text = item.attributes.title.en
-                Glide.with(binding.root).load(url).into(ivBookCover)
+                if (!(item.attributes.volume).isNullOrEmpty())
+                    binding.tvVolume.text = item.attributes.volume.toString()
+                else binding.tvVolume.text = ""
+
+                if (!(item.attributes.chapter).isNullOrEmpty())
+                    binding.tvChapterNum.text = item.attributes.chapter.toString()
+                else binding.tvChapterNum.text = ""
+
+                if (!(item.attributes.title).isNullOrEmpty())
+                    binding.tvChapterName.text = item.attributes.title.toString()
+                else binding.tvChapterName.text = ""
 
                 root.setOnClickListener {
                     onItemClick(item.id)
->>>>>>> origin/main
                 }
             }
         }
@@ -67,19 +43,12 @@ class ChapterListAdapter(private val apiItem : ApiItemChapter,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterListViewHolder =
         ChapterListViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.comics_item, parent, false), onItemClick = onItemClick
+                .inflate(R.layout.chapter_item, parent, false), onItemClick = onItemClick
         )
 
-<<<<<<< HEAD
     override fun getItemCount(): Int = chaptersItems.size
 
     override fun onBindViewHolder(holder: ChapterListViewHolder, position: Int) {
         holder.onBind(chaptersItems[position])
-=======
-    override fun getItemCount(): Int = mangaItems.size
-
-    override fun onBindViewHolder(holder: ChapterListViewHolder, position: Int) {
-        holder.onBind(mangaItems[position])
->>>>>>> origin/main
     }
 }

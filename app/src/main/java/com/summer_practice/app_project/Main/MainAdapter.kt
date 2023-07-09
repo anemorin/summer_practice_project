@@ -20,10 +20,10 @@ class MainAdapter(
         private val binding = CollectionItemBinding.bind(view)
         fun onBind(item: ApiMultiItem) {
             binding.run {
-                val adapter = subMainAdapter(item) { item ->
+                val adapter = SubMainAdapter(item) { item ->
                     findNavController(view.findFragment())
                         .navigate(R.id.action_mainFragment_to_comicsPageFragment,
-                            MakeBundle(item))}
+                            makeBundle(item))}
                 binding.rvHorizontal.adapter = adapter
             }
         }
@@ -41,7 +41,7 @@ class MainAdapter(
     }
 
     companion object {
-        private fun MakeBundle(id : String): Bundle {
+        private fun makeBundle(id : String): Bundle {
             var bundle = Bundle()
             bundle.putString("ID", id)
             return bundle

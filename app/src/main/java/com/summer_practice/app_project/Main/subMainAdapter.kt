@@ -10,19 +10,19 @@ import com.summer_practice.app_project.AppApi.MangaItem
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.ComicsItemBinding
 
-class subMainAdapter(private val apiItem : ApiMultiItem,
+class SubMainAdapter(apiItem : ApiMultiItem,
                      private val onItemClick : (String) -> Unit) :
-    RecyclerView.Adapter<subMainAdapter.SubViewHolder>() {
+    RecyclerView.Adapter<SubMainAdapter.SubViewHolder>() {
         private val mangaItems = apiItem.data
 
         class SubViewHolder(
-            private val view: View,
+            view: View,
             private val onItemClick : (String) -> Unit) :
             RecyclerView.ViewHolder(view) {
             private val binding = ComicsItemBinding.bind(view)
             fun onBind(item: MangaItem) {
                 binding.run {
-                    var imageFile: String = ""
+                    var imageFile = ""
                     for (i in item.relationships) {
                         if (i.type == "cover_art")
                             imageFile = i.attributes?.fileName.toString()

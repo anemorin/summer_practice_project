@@ -9,6 +9,21 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <TextView
+        android:id="@+id/tv_en_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/book_name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
@@ -19,38 +34,12 @@
         app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/tv_en_name"
         app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_en_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/book_name"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/iv_book_icon"
-                app:layout_constraintTop_toBottomOf="@+id/tv_rus_name" />
-
-            <TextView
-                android:id="@+id/tv_rus_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/book_name"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/iv_book_icon"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_book_icon"
@@ -69,13 +58,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/author_name_label"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/iv_book_icon"
-                app:layout_constraintTop_toBottomOf="@+id/tv_en_name" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_year_of_creating_label"
@@ -117,28 +106,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_count_chapters" />
 
             <TextView
-                android:id="@+id/tv_translator_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_book_icon"
-                app:layout_constraintTop_toBottomOf="@+id/tv_status_label" />
-
-            <TextView
                 android:id="@+id/tv_author_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -152,8 +125,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="TextView"
-
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -166,10 +137,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="TextView"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                android:fontFamily="@font/roboto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_chapters_count_label"
                 app:layout_constraintTop_toTopOf="@+id/tv_chapters_count_label" />
@@ -180,10 +150,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:textSize="12sp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/roboto"
-                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_status_label"
                 app:layout_constraintTop_toTopOf="@+id/tv_status_label" />
@@ -231,7 +200,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/description_example"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -246,14 +215,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
         android:background="@color/white"
         android:src="@drawable/v_arrow_back"
-        app:layout_constraintBottom_toTopOf="@+id/iv_book_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chapters_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
@@ -264,7 +232,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_chapters"
-        tools:listitem="@layout/fragment_resyclerview_element" />
+        tools:listitem="@layout/chapter_item" />
 
     <TextView
         android:id="@+id/tv_chapters"

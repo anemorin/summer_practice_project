@@ -7,7 +7,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface AppAPI {
-    @GET("/manga/{id}/feed")
+    @GET("/manga/{id}/feed?translatedLanguage[]=en")
     suspend fun getMangaChapters(@Path("id") id:String): ApiItemChapter
 
     @POST("/auth/login")
