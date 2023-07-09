@@ -1,21 +1,24 @@
 <resources>
     <string name="app_name">app_project</string>
     <string name="book_name">Book name</string>
-    <string name="author_name_label">Автор:</string>
-    <string name="year_of_create_label">Дата публикации:</string>
-    <string name="description_label">Описание:</string>
+    <string name="author_name_label">Author:</string>
+    <string name="year_of_create_label">Release date:</string>
+    <string name="description_label">Description:</string>
     <string name="description_example">...................................................................................................................................................................</string>
     <string name="part_name">part_name</string>
     <string name="part_date">part_date</string>
-    <string name="status">Статус:</string>
-    <string name="count_chapters">Количество глав:</string>
-    <string name="chapters_label">Главы:</string>
+    <string name="status">Status:</string>
+    <string name="count_chapters">Count chapters:</string>
+    <string name="chapters_label">Chapters:</string>
+    <string name="chapter">Chapter</string>
 
-    <string name="home">Главная</string>
-    <string name="search">Поиск</string>
-    <string name="library">Закладки</string>
-    <string name="profile">Профиль</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="library">Library</string>
+    <string name="profile">Profile</string>
     <string name="Name_of_collections">Name_of_collections</string>
     <string name="bookmark_description">bookmark_description</string>
     <string name="My_Library_label">My Library label\n</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
