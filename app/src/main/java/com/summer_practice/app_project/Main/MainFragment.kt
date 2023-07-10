@@ -46,8 +46,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding.run {
             ibSearch.setOnClickListener {
                 NavHostFragment.findNavController(view.findFragment())
-                    .navigate(R.id.action_mainFragment_to_searchFragment)}
+                    .navigate(R.id.action_mainFragment_to_searchFragment)
             }
+        }
 
 
         GlobalScope.launch(Dispatchers.IO) {
