@@ -18,6 +18,6 @@ class MainActivity : AppCompatActivity() {
             setupWithNavController(controller)
         }
 
-        val sharedPreferences = getSharedPreferences("token", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("APP", Context.MODE_PRIVATE)
     }
 }
