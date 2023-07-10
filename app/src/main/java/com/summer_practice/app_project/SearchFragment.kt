@@ -1,15 +1,12 @@
-package com.summer_practice.app_project.Main
+package com.summer_practice.app_project
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
-import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.View
+import androidx.appcompat.widget.SearchView
 import com.summer_practice.app_project.AppApi.ApiMultiItem
 import com.summer_practice.app_project.AppApi.AppAPI
-import com.summer_practice.app_project.R
-import com.summer_practice.app_project.databinding.FragmentMainBinding
+import com.summer_practice.app_project.databinding.FragmentSearchBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,14 +16,25 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private lateinit var binding : FragmentMainBinding
-
+class SearchFragment : Fragment(R.layout.fragment_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentSearchBinding.bind(view)
+        binding.run {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
 
-        binding = FragmentMainBinding.bind(view)
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    TODO("Not yet implemented")
+                }
+            })
+        }
+    }
+
+    private fun makeApiWork(string: String) : ApiMultiItem {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder()
@@ -40,20 +48,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             .build()
 
         val service = retroFit.create(AppAPI::class.java)
-        binding.rvMain.layoutManager = LinearLayoutManager(context)
-        val listCollections = mutableListOf<ApiMultiItem>()
-
-        binding.run {
-            ibSearch.setOnClickListener {
-                NavHostFragment.findNavController(view.findFragment())
-                    .navigate(R.id.action_mainFragment_to_searchFragment)}
-            }
 
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                listCollections.add(service.getListLatestUpdate())
-                val adapter = MainAdapter(listCollections)
-                binding.rvMain.adapter = adapter
+                return service.searchManga(string)
             }
         }
     }
