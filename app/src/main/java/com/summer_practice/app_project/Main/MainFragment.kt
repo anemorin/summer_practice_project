@@ -42,23 +42,31 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val service = retroFit.create(AppAPI::class.java)
         binding.rvMain.layoutManager = LinearLayoutManager(context)
         val listCollections = mutableListOf<ApiMultiItem>()
-
+        val listOfNames = mutableListOf<String>()
         binding.run {
             ibSearch.setOnClickListener {
                 NavHostFragment.findNavController(view.findFragment())
                     .navigate(R.id.action_mainFragment_to_searchFragment)}
             }
 
+
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 listCollections.add(service.getListLatestUpdate())
+                listOfNames.add("Latest updates")
                 listCollections.add(service.getList2023())
+                listOfNames.add("Best in 2023")
                 listCollections.add(service.getListNaruto())
+                listOfNames.add("All about Naruto")
                 listCollections.add(service.getListByOdaEiichiro())
+                listOfNames.add("Manga by Oda Eiichiro")
                 listCollections.add(service.getListPokemon())
+                listOfNames.add("All about Pokemon")
                 listCollections.add(service.getListNinja())
+                listOfNames.add("Ninja collection")
                 listCollections.add(service.getListSamurai())
-                val adapter = MainAdapter(listCollections)
+                listOfNames.add("Samurai collection")
+                val adapter = MainAdapter(listCollections, listOfNames)
                 binding.rvMain.adapter = adapter
             }
         }

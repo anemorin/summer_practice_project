@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/myLibraryFragment"
-        android:name="com.summer_practice.app_project.MyLibraryFragment"
+        android:name="com.summer_practice.app_project.myLibrary.MyLibraryFragment"
         android:label="fragment_library"
         tools:layout="@layout/fragment_my_library" >
         <action
@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_mainFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_collectionFragment"
+            app:destination="@id/collectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/comicsPageFragment"
@@ -52,4 +55,13 @@
         android:name="com.summer_practice.app_project.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.summer_practice.app_project.Collections.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" >
+        <action
+            android:id="@+id/action_collectionFragment_to_comicsPageFragment"
+            app:destination="@id/comicsPageFragment" />
+    </fragment>
 </navigation>

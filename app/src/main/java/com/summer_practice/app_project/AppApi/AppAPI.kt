@@ -62,4 +62,7 @@ interface AppAPI {
     @GET("/at-home/server/{id}")
     suspend fun getChapterImage(@Path("id") id : String) : ChapterImageItem
 
+    @GET("/user/follows/manga/{id}")
+    suspend fun checkUserFollowedManga(@Path("id") id : String) : ApiMultiItem
+
 }
