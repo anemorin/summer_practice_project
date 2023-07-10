@@ -52,6 +52,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 listCollections.add(service.getListLatestUpdate())
+                listCollections.add(service.getList2023())
+                listCollections.add(service.getListNaruto())
+                listCollections.add(service.getListByOdaEiichiro())
+                listCollections.add(service.getListPokemon())
+                listCollections.add(service.getListNinja())
+                listCollections.add(service.getListSamurai())
                 val adapter = MainAdapter(listCollections)
                 binding.rvMain.adapter = adapter
             }
