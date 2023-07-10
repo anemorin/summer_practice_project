@@ -16,7 +16,7 @@
         android:drawableLeft="@drawable/v_bookmarks"
         android:drawablePadding="10dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/Name_of_collections"
+        android:text="@string/name_of_collections"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

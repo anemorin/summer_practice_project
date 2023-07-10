@@ -82,7 +82,7 @@ class ComicsPageFragment : Fragment(R.layout.fragment_comics_page) {
     companion object {
         private fun makeBundle(id : String): Bundle {
             var bundle = Bundle()
-            bundle.putString("ID", id)
+            bundle.putString("chapterID", id)
             return bundle
         }
     }

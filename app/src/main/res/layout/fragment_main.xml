@@ -8,6 +8,17 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ib_search"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="24dp"
+        android:background="@null"
+        android:src="@drawable/v_search"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_header" />
+
     <TextView
         android:id="@+id/tv_header"
         android:layout_width="wrap_content"
