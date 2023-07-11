@@ -17,9 +17,6 @@
         <action
             android:id="@+id/action_myLibraryFragment_to_comicsPageFragment"
             app:destination="@id/comicsPageFragment" />
-        <action
-            android:id="@+id/action_myLibraryFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"

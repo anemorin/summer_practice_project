@@ -1,9 +1,13 @@
 package com.summer_practice.app_project.AppApi
 
+import android.app.Activity
+import android.content.Context
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -17,7 +21,7 @@ interface AppAPI {
 
     @POST("/auth/login")
     @Headers("Content-Type: application/json")
-    suspend fun logIn(@Body creds: LogInAtr) : Response<UserItem>
+    suspend fun logIn(@Body creds: LogInAtr) : UserItem
 
     @GET("/manga/?includes[]=cover_art")
     suspend fun searchManga(@Query("title") title: String) : ApiMultiItem
@@ -25,11 +29,17 @@ interface AppAPI {
     @GET("/manga/{id}?&includes[]=author&includes[]=cover_art")
     suspend fun getMangaById(@Path("id") id : String) : ApiSingleItem
 
-//    @POST("/manga/{id}/status")
-//    @Headers({
-//        "Content-Type: application/json"
-//        "Authorization: Bearer ${token}"})
-//    suspend fun addMangaToWishList(@Body status : StatusItem)
+    @POST("/manga/{id}/follow")
+    @Headers("Authorization: Bearer {token}")
+    suspend fun addMangaToWishList(@Path("id") id : String, @Header("Authorization") token : String )
+
+    @DELETE("/manga/{id}/follow")
+    @Headers("Authorization: Bearer {token}")
+    suspend fun deleteMangaFromWishList(@Path("id") id : String, @Header("Authorization") token : String )
+
+    @GET("/user/follows/manga")
+    @Headers("Authorization: Bearer {token}")
+    suspend fun getFollowList(@Header("Authorization") token : String ) : ApiMultiItem
 
     //title: Latest Update
     @GET("/manga?includes[]=cover_art")

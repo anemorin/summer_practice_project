@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.summer_practice.app_project.AppApi.ApiClient
 import com.summer_practice.app_project.AppApi.ApiMultiItem
 import com.summer_practice.app_project.AppApi.AppAPI
 import com.summer_practice.app_project.Main.MainAdapter
@@ -24,24 +25,11 @@ class ReaderFragment : Fragment(R.layout.fragment_reader) {
 
         val chapterId = arguments?.getString("chapterID")
         val binding = FragmentReaderBinding.bind(view)
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-
-        val retroFit = Retrofit.Builder()
-            .baseUrl("https://api.mangadex.org")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-
-        val service = retroFit.create(AppAPI::class.java)
+        val client = ApiClient().client
         binding.rvReader.layoutManager = LinearLayoutManager(context)
-
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                val adapter = ReaderAdapter(service.getChapterImage(chapterId.toString()))
+                val adapter = ReaderAdapter(client.getChapterImage(chapterId.toString()))
                 binding.rvReader.adapter = adapter
             }
         }

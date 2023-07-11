@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.summer_practice.app_project.AppApi.ApiClient
 import com.summer_practice.app_project.AppApi.AppAPI
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.FragmentSearchBinding
@@ -27,19 +28,16 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchBinding.bind(view)
         binding.run {
-
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    if (query != null) {
+                    if (query != null)
                         makeApiWork(query)
-                    }
                     return true
                 }
 
                 override fun onQueryTextChange(text: String?): Boolean {
-                    if (text != null) {
+                    if (text != null)
                         makeApiWork(text)
-                    }
                     return true
                 }
             })
@@ -49,23 +47,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun makeApiWork(text : String) {
         binding = view?.let { FragmentSearchBinding.bind(it) }!!
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-
-        val retroFit = Retrofit.Builder()
-            .baseUrl("https://api.mangadex.org")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-
-        val service = retroFit.create(AppAPI::class.java)
+        val client = ApiClient().client
 
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                val item = service.searchManga(text)
+                val item = client.searchManga(text)
                 binding.rvSearch.layoutManager = LinearLayoutManager(context)
                 val adapter = SearchAdapter(item) {
                     NavHostFragment.findNavController(requireView().findFragment())

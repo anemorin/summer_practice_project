@@ -8,6 +8,7 @@ import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.summer_practice.app_project.AppApi.ApiClient
 import com.summer_practice.app_project.AppApi.AppAPI
 import com.summer_practice.app_project.Main.MainAdapter
 import com.summer_practice.app_project.R
@@ -30,23 +31,11 @@ class ComicsPageFragment : Fragment(R.layout.fragment_comics_page) {
         binding = FragmentComicsPageBinding.bind(view)
         val mangaId = arguments?.getString("ID")
 
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-
-        val retroFit = Retrofit.Builder()
-            .baseUrl("https://api.mangadex.org")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-
-        val service = retroFit.create(AppAPI::class.java)
+        val client = ApiClient().client
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                val mangaItem = service.getMangaById(mangaId.toString())
-                val chapterItem = service.getMangaChapters(mangaId.toString())
+                val mangaItem = client.getMangaById(mangaId.toString())
+                val chapterItem = client.getMangaChapters(mangaId.toString())
                 binding.tvEnName.text = mangaItem.data.attributes.title.en
                 binding.tvDescription.text = mangaItem.data.attributes.description.en
                 binding.tvStatus.text = mangaItem.data.attributes.status

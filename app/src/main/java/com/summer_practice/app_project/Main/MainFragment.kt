@@ -7,17 +7,13 @@ import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summer_practice.app_project.AppApi.ApiMultiItem
-import com.summer_practice.app_project.AppApi.AppAPI
+import com.summer_practice.app_project.AppApi.ApiClient
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.FragmentMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -27,19 +23,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentMainBinding.bind(view)
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-
-        val retroFit = Retrofit.Builder()
-            .baseUrl("https://api.mangadex.org")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-
-        val service = retroFit.create(AppAPI::class.java)
         binding.rvMain.layoutManager = LinearLayoutManager(context)
         val listCollections = mutableListOf<ApiMultiItem>()
         val listOfNames = mutableListOf<String>()
@@ -50,23 +33,24 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         }
 
-
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                listCollections.add(service.getListLatestUpdate())
+                val client = ApiClient().client
                 listOfNames.add("Latest updates")
-                listCollections.add(service.getList2023())
+                listCollections.add(client.getListLatestUpdate())
                 listOfNames.add("Best in 2023")
-                listCollections.add(service.getListNaruto())
+                listCollections.add(client.getList2023())
                 listOfNames.add("All about Naruto")
-                listCollections.add(service.getListByOdaEiichiro())
+                listCollections.add(client.getListNaruto())
                 listOfNames.add("Manga by Oda Eiichiro")
-                listCollections.add(service.getListPokemon())
+                listCollections.add(client.getListByOdaEiichiro())
                 listOfNames.add("All about Pokemon")
-                listCollections.add(service.getListNinja())
+                listCollections.add(client.getListPokemon())
                 listOfNames.add("Ninja collection")
-                listCollections.add(service.getListSamurai())
+                listCollections.add(client.getListNinja())
                 listOfNames.add("Samurai collection")
+                listCollections.add(client.getListSamurai())
+
                 val adapter = MainAdapter(listCollections, listOfNames)
                 binding.rvMain.adapter = adapter
             }

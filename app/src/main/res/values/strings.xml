@@ -22,4 +22,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nothing_here">There is nothing here,\nplease log in</string>
     <string name="more">See more</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="log_in_button">Log in</string>
+    <string name="already_logged_in">You are already logged in</string>
+    <string name="successfully_log_in">You successfully logged in</string>
+    <string name="successfully_log_out">You successfully logged out</string>
+    <string name="user_not_found">User not found</string>
 </resources>
