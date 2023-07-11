@@ -1,6 +1,7 @@
 package com.summer_practice.app_project.AppApi
 
 import org.json.JSONObject
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -16,7 +17,7 @@ interface AppAPI {
 
     @POST("/auth/login")
     @Headers("Content-Type: application/json")
-    suspend fun logIn(@Body creds: LogInAtr) : String
+    suspend fun logIn(@Body creds: LogInAtr) : Response<UserItem>
 
     @GET("/manga/?includes[]=cover_art")
     suspend fun searchManga(@Query("title") title: String) : ApiMultiItem
