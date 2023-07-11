@@ -1,6 +1,9 @@
 package com.summer_practice.app_project.Search
 
 import android.os.Bundle
+import android.view.View
+import android.widget.SearchView
+import androidx.fragment.app.Fragment
 
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment
