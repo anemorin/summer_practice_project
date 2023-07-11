@@ -18,8 +18,11 @@ interface AppAPI {
     @Headers("Content-Type: application/json")
     suspend fun logIn(@Body creds: LogInAtr) : String
 
-    @GET("/manga/?title={title}")
-    suspend fun searchManga(@Path("title") title: String) : ApiMultiItem
+    /*@GET("/manga/?title={title}")
+    suspend fun searchManga(@Path("title") title: String) : ApiMultiItem*/
+
+    @GET("/manga/?includes[]=cover_art")
+    suspend fun searchManga(@Query("title") title : String) : ApiMultiItem
 
     @GET("/manga/{id}?&includes[]=author&includes[]=cover_art")
     suspend fun getMangaById(@Path("id") id : String) : ApiSingleItem
