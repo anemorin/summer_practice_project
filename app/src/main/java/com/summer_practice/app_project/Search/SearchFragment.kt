@@ -1,9 +1,7 @@
 package com.summer_practice.app_project.Search
 
 import android.os.Bundle
-import android.view.View
-import android.widget.SearchView
-import androidx.fragment.app.Fragment
+
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +24,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchBinding.bind(view)
         binding.run {
+
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query != null) {
