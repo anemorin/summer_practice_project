@@ -52,9 +52,13 @@
         tools:layout="@layout/fragment_reader" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.summer_practice.app_project.SearchFragment"
+        android:name="com.summer_practice.app_project.Search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_comicsPageFragment"
+            app:destination="@id/comicsPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/collectionFragment"
         android:name="com.summer_practice.app_project.Collections.CollectionFragment"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment">
+    tools:context=".Search.SearchFragment">
 
     <SearchView
         android:id="@+id/searchView"
@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
@@ -28,5 +29,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
-        tools:listitem="@layout/item_book_for_fragment_collection"/>
+        tools:listitem="@layout/item_book_for_fragment_collection" />
 </androidx.constraintlayout.widget.ConstraintLayout>

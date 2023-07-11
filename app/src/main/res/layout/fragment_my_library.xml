@@ -39,17 +39,6 @@ tools:ignore="VisualLintTextFieldSize">
         android:visibility="invisible"
         tools:listitem="@layout/item_book_for_fragment_collection" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/ib_search"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="24dp"
-        android:background="@null"
-        android:src="@drawable/v_search"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_title" />
-
     <TextView
         android:id="@+id/tv_error"
         android:layout_width="wrap_content"
@@ -58,10 +47,11 @@ tools:ignore="VisualLintTextFieldSize">
         android:layout_marginEnd="36dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/nothing_here"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rv" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
