@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">app_project</string>
+    <string name="app_name">MangaReader</string>
     <string name="book_name">Book name</string>
     <string name="author_name_label">Author:</string>
     <string name="year_of_create_label">Year:</string>
@@ -29,4 +29,6 @@
     <string name="successfully_log_in">You successfully logged in</string>
     <string name="successfully_log_out">You successfully logged out</string>
     <string name="user_not_found">User not found</string>
+    <string name="no_data">No data</string>
+    <string name="set">"?"</string>
 </resources>

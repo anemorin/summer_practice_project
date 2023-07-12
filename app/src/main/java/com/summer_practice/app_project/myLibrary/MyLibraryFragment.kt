@@ -19,20 +19,20 @@ import kotlinx.coroutines.withContext
 
 class MyLibraryFragment : Fragment(R.layout.fragment_my_library) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentMyLibraryBinding.bind(view)
         val sharedPreferences = activity?.getSharedPreferences("APP", Context.MODE_PRIVATE);
+
         if (sharedPreferences != null) {
-            if (sharedPreferences.getString("token", null).isNullOrEmpty()) {
-                binding.rv.visibility = View.INVISIBLE
-            }
-            else {
+            if (!sharedPreferences.getString("token", null).isNullOrEmpty()) {
                 binding.tvError.visibility = View.INVISIBLE
                 val client = ApiClient().client
+
                 GlobalScope.launch(Dispatchers.IO) {
                     withContext(Dispatchers.Main) {
                         val followList = client.getFollowList(sharedPreferences.getString("token", null).toString())
-                        val adapter = MyLibraryAdapter(followList) { item ->
+                        val adapter = MyLibraryAdapter(followList, sharedPreferences.getString("token", null).toString()) { item ->
                             NavHostFragment.findNavController(view.findFragment())
                                 .navigate(R.id.action_myLibraryFragment_to_comicsPageFragment,
                                     makeBundle(item))
@@ -42,6 +42,7 @@ class MyLibraryFragment : Fragment(R.layout.fragment_my_library) {
                     }
                 }
             }
+            else binding.tvError.visibility = View.VISIBLE
         }
     }
 

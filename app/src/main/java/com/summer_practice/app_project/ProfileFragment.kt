@@ -43,14 +43,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     @OptIn(ExperimentalCoroutinesApi::class)
     @SuppressLint("CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
-
         val client = ApiClient().client
-
         val sharedPreferences = activity?.getSharedPreferences("APP",Context.MODE_PRIVATE);
+
         if (sharedPreferences != null) {
             if (sharedPreferences.getString("token", null).isNullOrEmpty()) {
-
                 binding.etLogin.visibility = View.VISIBLE
                 binding.etPassword.visibility = View.VISIBLE
                 binding.bLogIn.visibility = View.VISIBLE
@@ -66,8 +65,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                         user
                     }
                     user.invokeOnCompletion {
-                        if (user.getCompleted().result == "ok") {
-                            sharedPreferences.edit().putString("token", user.getCompleted().token.session).apply()
+                        if (user.getCompleted().code() == 200) {
+                            sharedPreferences.edit().putString("token", "Bearer " + user.getCompleted().body()!!.token.session).apply()
                             binding.bLogIn.visibility = View.GONE
                             binding.etLogin.visibility = View.GONE
                             binding.etPassword.visibility = View.GONE
@@ -75,9 +74,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                             binding.ibLogout.visibility = View.VISIBLE
                             Snackbar.make(binding.root, R.string.successfully_log_in, Snackbar.LENGTH_LONG).show()
                         }
-                        else {
-                            Snackbar.make(binding.root, R.string.user_not_found, Snackbar.LENGTH_LONG).show()
-                        }
+                        else Snackbar.make(binding.root, R.string.user_not_found, Snackbar.LENGTH_LONG).show()
                     }
                 }
             }

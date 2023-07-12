@@ -27,6 +27,7 @@ class ReaderFragment : Fragment(R.layout.fragment_reader) {
         val binding = FragmentReaderBinding.bind(view)
         val client = ApiClient().client
         binding.rvReader.layoutManager = LinearLayoutManager(context)
+
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 val adapter = ReaderAdapter(client.getChapterImage(chapterId.toString()))

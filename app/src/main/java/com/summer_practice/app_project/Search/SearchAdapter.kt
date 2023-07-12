@@ -20,18 +20,16 @@ class SearchAdapter(apiItem : ApiMultiItem, private val onItemClick : (String) -
         private val binding = ItemBookForFragmentCollectionBinding.bind(view)
         fun onBind(item: MangaItem) {
             binding.run {
+                binding.bookmarkButton.visibility = View.GONE
                 var imageFile = ""
-                for (i in item.relationships) {
+                for (i in item.relationships)
                     if (i.type == "cover_art")
                         imageFile = i.attributes?.fileName.toString()
-                }
                 val url = "https://uploads.mangadex.org/covers/${item.id}/$imageFile"
                 tvTitle.text = item.attributes.title.en
                 Glide.with(binding.root).load(url).into(ivBookCover)
 
-                root.setOnClickListener {
-                    onItemClick(item.id)
-                }
+                root.setOnClickListener { onItemClick(item.id) }
             }
         }
     }
@@ -40,12 +38,13 @@ class SearchAdapter(apiItem : ApiMultiItem, private val onItemClick : (String) -
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
         SearchViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_book_for_fragment_collection, parent, false), onItemClick = onItemClick
+                .inflate(R.layout.item_book_for_fragment_collection, parent, false),
+            onItemClick = onItemClick
         )
 
     override fun getItemCount(): Int = mangaItems.size
 
-    override fun onBindViewHolder(holder: SearchAdapter.SearchViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.onBind(mangaItems[position])
     }
 }

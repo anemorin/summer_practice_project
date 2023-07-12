@@ -23,25 +23,25 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
+
     private lateinit var binding: FragmentSearchBinding
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchBinding.bind(view)
+
         binding.run {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    if (query != null)
-                        makeApiWork(query)
+                    if (query != null) makeApiWork(query)
                     return true
                 }
 
                 override fun onQueryTextChange(text: String?): Boolean {
-                    if (text != null)
-                        makeApiWork(text)
+                    if (text != null) makeApiWork(text)
                     return true
                 }
             })
-
         }
     }
 
@@ -51,14 +51,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                val item = client.searchManga(text)
                 binding.rvSearch.layoutManager = LinearLayoutManager(context)
+                val item = client.searchManga(text)
                 val adapter = SearchAdapter(item) {
                     NavHostFragment.findNavController(requireView().findFragment())
                         .navigate(R.id.action_searchFragment_to_comicsPageFragment,
-                            makeBundle(it)
-                        )
-                }
+                            makeBundle(it)) }
                 binding.rvSearch.adapter = adapter
             }
         }

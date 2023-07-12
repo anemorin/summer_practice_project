@@ -16,7 +16,7 @@ class ChapterListAdapter(apiItem : ApiItemChapter,
     private val chaptersItems = apiItem.data
     
     class ChapterListViewHolder(
-        private val view: View,
+        view: View,
         private val onItemClick : (String) -> Unit) :
         RecyclerView.ViewHolder(view) {
         private val binding = ChapterItemBinding.bind(view)
@@ -24,7 +24,7 @@ class ChapterListAdapter(apiItem : ApiItemChapter,
             binding.run {
                 if (!(item.attributes.volume).isNullOrEmpty())
                     binding.tvVolume.text = item.attributes.volume.toString()
-                else binding.tvVolume.text = ""
+                else binding.tvVolume.text = "1"
 
                 if (!(item.attributes.chapter).isNullOrEmpty())
                     binding.tvChapterNum.text = item.attributes.chapter.toString()

@@ -14,8 +14,11 @@ class ReaderAdapter(apiItem : ChapterImageItem) :
 
     val chapterImage = apiItem.chapter.data
     val url = apiItem.baseUrl + "/data/" + apiItem.chapter.hash + "/"
+
     class ReaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         private val binding = ImagePageItemBinding.bind(view)
+
         fun onBind(item: String, url: String) {
             Glide.with(binding.root).load(url + item).into(binding.ivPageImage)
         }

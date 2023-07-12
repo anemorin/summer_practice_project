@@ -5,34 +5,58 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.summer_practice.app_project.AppApi.ApiClient
 import com.summer_practice.app_project.AppApi.ApiMultiItem
 import com.summer_practice.app_project.AppApi.MangaItem
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.ComicsItemBinding
+import com.summer_practice.app_project.databinding.ItemBookForFragmentCollectionBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class MyLibraryAdapter(apiItem : ApiMultiItem,
-                     private val onItemClick : (String) -> Unit) :
+class MyLibraryAdapter(apiItem : ApiMultiItem, sessinToken : String, private val onItemClick : (String) -> Unit) :
     RecyclerView.Adapter<MyLibraryAdapter.MyLibraryViewHolder>() {
-        private val mangaItems = apiItem.data
 
-    class MyLibraryViewHolder(
-        view: View,
-        private val onItemClick : (String) -> Unit) :
+    private val mangaItems = apiItem.data
+    private val sessionToken = sessinToken
+
+    class MyLibraryViewHolder(view: View, private val onItemClick : (String) -> Unit) :
         RecyclerView.ViewHolder(view) {
-        private val binding = ComicsItemBinding.bind(view)
-        fun onBind(item: MangaItem) {
+
+        private val binding = ItemBookForFragmentCollectionBinding.bind(view)
+
+        fun onBind(item: MangaItem, sessionToken: String) {
             binding.run {
                 var imageFile = ""
-                for (i in item.relationships) {
+                for (i in item.relationships)
                     if (i.type == "cover_art")
                         imageFile = i.attributes?.fileName.toString()
-                }
                 val url = "https://uploads.mangadex.org/covers/${item.id}/$imageFile"
-                binding.tvHeader.text = item.attributes.title.en
+                binding.tvTitle.text = item.attributes.title.en
                 Glide.with(binding.root).load(url).into(ivBookCover)
+                binding.bookmarkButton.setImageResource(R.drawable.v_bookmark_added)
 
                 root.setOnClickListener {
                     onItemClick(item.id)
+                }
+
+                binding.bookmarkButton.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        withContext(Dispatchers.Main) {
+                            val client = ApiClient().client
+                            val result = client.checkUserFollowedManga(item.id, sessionToken)
+                            if (result.code() == 200) {
+                                client.deleteMangaFromWishList(item.id, sessionToken)
+                                binding.bookmarkButton.setImageResource(R.drawable.v_bookmark_empty)
+                            }
+                            else {
+                                client.addMangaToWishList(item.id, sessionToken)
+                                binding.bookmarkButton.setImageResource(R.drawable.v_bookmark_added)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -46,6 +70,6 @@ class MyLibraryAdapter(apiItem : ApiMultiItem,
     override fun getItemCount(): Int = mangaItems.size
 
     override fun onBindViewHolder(holder: MyLibraryViewHolder, position: Int) {
-        holder.onBind(mangaItems[position])
+        holder.onBind(mangaItems[position], sessionToken)
     }
 }

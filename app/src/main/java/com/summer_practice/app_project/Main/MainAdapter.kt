@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.findFragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.summer_practice.app_project.AppApi.ApiMultiItem
 import com.summer_practice.app_project.R
 import com.summer_practice.app_project.databinding.CollectionItemBinding
-import java.util.ArrayList
 
 class MainAdapter(
     private val listCollections : List<ApiMultiItem>,
@@ -21,21 +19,21 @@ class MainAdapter(
 
     class MainFragmentViewHolder(private val view: View):
         RecyclerView.ViewHolder(view) {
+
         private val binding = CollectionItemBinding.bind(view)
-        fun onBind(item: ApiMultiItem, name: String) {
+        fun onBind(apiMultiItem: ApiMultiItem, titleName: String) {
             binding.run {
-                tvCollectionLabel.text = name
-                val adapter = SubMainAdapter(item) { item ->
+                tvCollectionLabel.text = titleName
+                bMore.setOnClickListener {
+                    findNavController(view.findFragment())
+                        .navigate(R.id.action_mainFragment_to_collectionFragment,
+                            makeBundle(titleName))
+                }
+                val adapter = SubMainAdapter(apiMultiItem) { item ->
                     findNavController(view.findFragment())
                         .navigate(R.id.action_mainFragment_to_comicsPageFragment,
                             makeBundle(item))}
                 rvHorizontal.adapter = adapter
-
-                bMore.setOnClickListener {
-                    findNavController(view.findFragment())
-                        .navigate(R.id.action_mainFragment_to_collectionFragment,
-                            makeParcelabelBundle(item, name))
-                }
             }
         }
     }
@@ -53,13 +51,13 @@ class MainAdapter(
 
     companion object {
         private fun makeBundle(id : String): Bundle {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putString("ID", id)
             return bundle
         }
 
         private fun makeParcelabelBundle(apiData : Parcelable, name : String) : Bundle {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putParcelable("API", apiData)
             bundle.putString("NAME", name)
             return bundle

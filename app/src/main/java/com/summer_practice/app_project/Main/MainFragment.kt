@@ -21,11 +21,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentMainBinding.bind(view)
         binding.rvMain.layoutManager = LinearLayoutManager(context)
         val listCollections = mutableListOf<ApiMultiItem>()
         val listOfNames = mutableListOf<String>()
+
         binding.run {
             ibSearch.setOnClickListener {
                 NavHostFragment.findNavController(view.findFragment())
@@ -37,20 +37,19 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             withContext(Dispatchers.Main) {
                 val client = ApiClient().client
                 listOfNames.add("Latest updates")
-                listCollections.add(client.getListLatestUpdate())
+                listCollections.add(client.getListLatestUpdate(10))
                 listOfNames.add("Best in 2023")
-                listCollections.add(client.getList2023())
+                listCollections.add(client.getList2023(10))
                 listOfNames.add("All about Naruto")
-                listCollections.add(client.getListNaruto())
+                listCollections.add(client.getListNaruto(10))
                 listOfNames.add("Manga by Oda Eiichiro")
-                listCollections.add(client.getListByOdaEiichiro())
+                listCollections.add(client.getListByOdaEiichiro(10))
                 listOfNames.add("All about Pokemon")
-                listCollections.add(client.getListPokemon())
+                listCollections.add(client.getListPokemon(10))
                 listOfNames.add("Ninja collection")
-                listCollections.add(client.getListNinja())
+                listCollections.add(client.getListNinja(10))
                 listOfNames.add("Samurai collection")
-                listCollections.add(client.getListSamurai())
-
+                listCollections.add(client.getListSamurai(10))
                 val adapter = MainAdapter(listCollections, listOfNames)
                 binding.rvMain.adapter = adapter
             }

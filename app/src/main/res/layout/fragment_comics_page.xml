@@ -31,15 +31,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ib_back_arroy"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ib_bookmark"
                     app:layout_constraintStart_toEndOf="@+id/ib_back_arroy"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/ib_back_arroy" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView"
@@ -173,6 +171,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/tv_status_label"
                             app:layout_constraintTop_toTopOf="@+id/tv_status_label" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -261,6 +260,19 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ib_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@null"
+                    android:visibility="invisible"
+                    android:src="@drawable/v_bookmark_empty"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

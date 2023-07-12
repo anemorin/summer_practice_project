@@ -55,6 +55,15 @@
         <action
             android:id="@+id/action_searchFragment_to_comicsPageFragment"
             app:destination="@id/comicsPageFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_myLibraryFragment"
+            app:destination="@id/myLibraryFragment" />
     </fragment>
     <fragment
         android:id="@+id/collectionFragment"
